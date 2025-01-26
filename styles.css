@@ -1,0 +1,161 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #660072;
+    text-orientation: center;
+}
+
+.TextTitle{
+    text-align: center;
+}
+
+.titleH3{
+    font-size: 25px;
+    color: #ffffff;
+}
+
+.textinho{
+    text-align: center;
+}
+
+.subTextinho{
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.cont-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 10px;
+    background-color: #ff15fc7e;
+    width: 110px;
+    height: 60px;
+    font-size: 15px;
+  
+} 
+
+.base-contador{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #646464d2;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.contador{
+  display: grid;
+  text-align: center;
+  grid-template-columns: repeat(2, 1fr); /* Três colunas */
+  gap: 10px; /* Espaçamento entre os itens */
+}
+
+.container div:nth-child(odd) {
+  grid-column: 1; /* Primeira coluna */
+}
+
+.container div:nth-child(even) {
+  grid-column: 2; /* Segunda coluna */
+}
+
+.subH2 {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.2; /* Ajuste do espaçamento de linha para garantir alinhamento */
+}
+
+#changingText {
+  color: #ff00f1;
+  font-size: 18px;
+  font-weight: bold;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #ff00f1; /*cor da | */
+  vertical-align: bottom;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.carousel-container {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 1s ease-in-out;
+}
+
+.carousel-images img {
+  width: 100%;
+  border-radius: 20px;
+  height: auto;
+  object-fit: cover;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  z-index: 10;  
+}
+
+.carousel-indicators .dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-indicators .active {
+  background-color: #717171;
+}
+
+.heart {
+    font-size: 50px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    color: red;
+    animation: pulse 1s infinite; 
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1); /* Tamanho normal */
+    }
+    50% {
+        transform: scale(1.2); /* Expande um pouco */
+    }
+    100% {
+        transform: scale(1); /* Volta ao tamanho original */
+    }
+}
