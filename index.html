@@ -3,61 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu amorzinho</title>
-        <link rel="stylesheet" href="styles.css">
+    <title>Nosso Amor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="TextTitle"> <!-- titulo -->
-     <h3 class="titleH3">Nossa história!</h3>
-    <h2 class="subH2">Guardando <span id="changingText">memórias</span> que o tempo não apaga.</h2>
-    </div>
-      <!-- carrosel -->
-       <div class="carousel-container">
-    <div class="carousel-images">
-      <img src="imgs/img1.jpg" alt="Imagem 1">
-      <img src="imgs/img2.jpg" alt="Imagem 2"> 
-      <img src="imgs/img3.jpg" alt="Imagem 3">
-      <img src="imgs/img4.jpg" alt="Imagem 4"> 
-      <img src="imgs/img5.jpg" alt="Imagem 5"> 
-      <img src="imgs/img6.jpg" alt="Imagem 6">
-      <img src="imgs/img7.jpg" alt="Imagem 7"> 
-      <img src="imgs/img8.jpg" alt="Imagem 8">
-      <img src="imgs/img9.jpg" alt="Imagem 9">
-    <img src="imgs/img10.jpg" alt="Imagem 10">
-    <img src="imgs/img11.jpg" alt="Imagem 11">  
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Nossa História</h1>
+            <h2 class="subtitle">Construindo <span id="changingText">memórias</span> eternas</h2>
+        </header>
+<!-- ver erro das bolinha do carrosel -->
+        <section class="carousel-section">
+            <div class="carousel-container">
+                <div class="carousel-images">
+                    <img src="imgs/img1.jpg" alt="Nossos momentos">
+                    <img src="imgs/img2.jpg" alt="Nossas aventuras">
+                    <img src="imgs/img3.jpg" alt="Nossas conquistas">
+                    <img src="imgs/img4.jpg" alt="Nossas conquistas">
+                    <img src="imgs/img5.jpg" alt="Nossas conquistas">
+                    <img src="imgs/img6.jpg" alt="Nossas conquistas">
+                    <img src="imgs/img7.jpg" alt="Nossas conquistas">
+                    <img src="imgs/img8.jpg" alt="Nossas conquistas">
+                    <img src="imgs/img9.jpg" alt="Nossas conquistas">
+                    <img src="imgs/img10.jpg" alt="Nossas conquistas">
+                    <img src="imgs/img11.jpg" alt="Nossas conquistas">                
+                </div>
+                <div class="carousel-indicators"></div>
+            </div>
+        </section>
+
+        <section class="love-message">
+            <div class="message-content">
+                <h3>Para Meu Amor</h3>
+                <p>Você é a pessoa mais incrível que já conheci. Cada dia ao seu lado é uma alegria e uma aventura. Obrigado por sempre estar do meu lado, minha parceira e meu amorzinho. Te amo mais que qualquer coisa você foi minha melhor escolha ♥</p>
+            </div>
+        </section>
+
+        <section class="time-counter">
+            <div class="counter-box">
+                <h3>Tempo Juntos</h3>
+                <div class="counter-items">
+                    <div class="counter">
+                        <span id="years">0</span>
+                        <small>Anos</small>
+                    </div>
+                    <div class="counter">
+                        <span id="months">0</span>
+                        <small>Meses</small>
+                    </div>
+                    <div class="counter">
+                        <span id="days">0</span>
+                        <small>Dias</small>
+                    </div>
+                </div>
+                <div class="heart">♥️</div>
+            </div>
+        </section>
     </div>
 
-  <!-- Nulo porque ta bugado<div class="carousel-indicators">
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div> -->
-    <!--Texto da gente-->
-    <div class="textinho">
-        <h3 class="titleH3">Para meu amor</h3>
-        <h2 class="subTextinho">Oque dizer não é meu amor... Só tenho a agradecer por ter entrado na minha vida, ser essa pessoa linda maravilhosa que eu amo tanto, que me proporcionou momentos lindos, maravilhosos e marcantes, nada pode te descrever meu amor. Só tenho a agradecer por ser essa pessoa que você é, dedicada e amorosa, mesmo quando brigamos ou discutimos, teimosa igual cabrito mas sabe que eu amo seu jeitinho meiga de ser, enfim. Te amo meu amor ❤️</h2>
-    </div>
-    <!--Contador de tempo-->
-    <div class="base-contador">
-        <h2 class="titleH3">Tempo juntos</h2>
-        <div class="contador">
-      <h1 class="cont-item" id="years"></h1>
-      <h1 class="cont-item" id="months"></h1>
-      <h1 class="cont-item" id="days"></h1>
-      <h1 class="cont-item" id="hours"></h1>         
-        </div>
-        <!-- coração -->
-        <h3 class="heart">❤️</h3>
-    </div>
-       
-  <script src="js.js"></script>
+    <script src="js.js"></script>
 </body>
-</html>
+    </html>
+                        
