@@ -1,123 +1,106 @@
-const words = ["memórias", "sensações", "momentos"];
-const element = document.getElementById("changingText");
-
+// Efeito de digitação
+const words = ["memórias", "momentos", "conquistas", "sonhos"];
+const typingElement = document.getElementById('changingText');
 let wordIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
 
-function typeEffect() {
-  const currentWord = words[wordIndex];
-
-  // Atualiza o texto
-  element.textContent = currentWord.slice(0, charIndex);
-
-  if (!isDeleting && charIndex < currentWord.length) {
-    // Digitando
-    charIndex++;
-    setTimeout(typeEffect, 150); // Velocidade de digitação
-  } else if (isDeleting && charIndex > 0) {
-    // Apagando
-    charIndex--;
-    setTimeout(typeEffect, 100); // Velocidade de apagar
-  } else {
-    // Muda para o próximo estado
-    isDeleting = !isDeleting;
-    if (!isDeleting) {
-      wordIndex = (wordIndex + 1) % words.length; // Vai para a próxima palavra
-    }
-    setTimeout(typeEffect, 1000); // Pausa antes de apagar/recomeçar
-  }
-}
-
-// Inicia a animação
-typeEffect();
-
-let currentIndex = 0;
-const images = document.querySelectorAll('.carousel-images img');
-const dots = document.querySelectorAll('.carousel-indicators .dot');
-
-function showImage(index) {
-  // Alinha a posição das imagens
-  document.querySelector('.carousel-images').style.transform = `translateX(-${index * 100}%)`;
-
-  // Adiciona a classe 'active' ao indicador
-  dots.forEach((dot, i) => {
-    if (i === index) {
-      dot.classList.add('active');
-    } else {
-      dot.classList.remove('active');
-    }
-  });
-}
-
-// Função para trocar a imagem a cada 3 segundos
-function nextImage() {
-  currentIndex = (currentIndex + 1) % images.length;
-  showImage(currentIndex);
-}
-
-// Função para alterar a imagem ao clicar no indicador
-function setImage(index) {
-  currentIndex = index;
-  showImage(currentIndex);
-}
-
-// Função para configurar os cliques nos indicadores
-dots.forEach((dot, index) => {
-  dot.addEventListener('click', () => setImage(index));
-});
-
-// Inicia o carrossel
-setInterval(nextImage, 3000); // Troca de imagem a cada 3 segundos
-
-// Exibe a primeira imagem
-showImage(currentIndex);
-////////////////////////
-
-// Definindo a data inicial (26 de setembro de 2024, ao meio-dia)
-const startDate = new Date("2023-09-26T12:00:00");
-
-function updateElapsedTime() {
-    const now = new Date();
+const typeEffect = () => {
+    const currentWord = words[wordIndex];
     
-    // Calcular diferença inicial
-    let years = now.getFullYear() - startDate.getFullYear();
-    let months = now.getMonth() - startDate.getMonth();
-    let days = now.getDate() - startDate.getDate();
-    let hours = now.getHours() - startDate.getHours();
-    let minutes = now.getMinutes() - startDate.getMinutes();
+    typingElement.textContent = currentWord.substring(0, charIndex);
+    typingElement.style.borderRight = isDeleting ? 'none' : `2px solid ${getComputedStyle(typingElement).color}`;
 
-    // Ajustar meses negativos
+    if (!isDeleting && charIndex < currentWord.length) {
+        charIndex++;
+        setTimeout(typeEffect, 150);
+    } else if (isDeleting && charIndex > 0) {
+        charIndex--;
+        setTimeout(typeEffect, 100);
+    } else {
+        isDeleting = !isDeleting;
+        if (!isDeleting) wordIndex = (wordIndex + 1) % words.length;
+        setTimeout(typeEffect, isDeleting ? 1000 : 500);
+    }
+};
+
+// Carrossel
+class Carousel {
+    constructor() {
+        this.index = 0;
+        this.interval = null;
+        this.images = document.querySelectorAll('.carousel-images img');
+        this.indicators = document.querySelector('.carousel-indicators');
+        this.initIndicators();
+        this.start();
+        this.showSlide(0);
+    }
+
+    initIndicators() {
+        this.images.forEach((_, i) => {
+            const dot = document.createElement('span');
+            dot.addEventListener('click', () => this.showSlide(i));
+            this.indicators.appendChild(dot);
+        });
+    }
+
+    showSlide(index) {
+        this.index = index;
+        document.querySelector('.carousel-images').style.transform = `translateX(-${index * 100}%)`;
+        document.querySelectorAll('.carousel-indicators span').forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+
+    start() {
+        this.interval = setInterval(() => {
+            this.index = (this.index + 1) % this.images.length;
+            this.showSlide(this.index);
+        }, 5000);
+    }
+}
+
+// Contador de Tempo Corrigido
+function calculateTimeTogether() {
+    const startDate = new Date('2023-09-26T12:00:00');
+    const currentDate = new Date();
+    
+    let years = currentDate.getFullYear() - startDate.getFullYear();
+    let months = currentDate.getMonth() - startDate.getMonth();
+    let days = currentDate.getDate() - startDate.getDate();
+
+    // Ajuste de meses negativos
     if (months < 0) {
         years--;
         months += 12;
     }
 
-    // Ajustar dias negativos
+    // Ajuste de dias negativos
     if (days < 0) {
-        months--;
-        // Obter o último dia do mês anterior
-        const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        const lastMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
         days += lastMonth.getDate();
+        months--;
     }
 
-    // Ajustar horas e minutos
-    if (hours < 0) {
-        days--;
-        hours += 24;
-    }
-    if (minutes < 0) {
-        hours--;
-        minutes += 60;
-    }
+    // Garantir valores não negativos
+    years = Math.max(years, 0);
+    months = Math.max(months, 0);
+    days = Math.max(days, 0);
 
-    // Exibir os valores calculados
-    document.getElementById('years').textContent = `${years} Ano${years !== 1 ? 's' : ''}`;
-    document.getElementById('months').textContent = `${months} Mês${months !== 1 ? 'es' : ''}`;
-    document.getElementById('days').textContent = `${days} Dia${days !== 1 ? 's' : ''}`;
-    document.getElementById('hours').textContent = `${hours} Hora${hours !== 1 ? 's' : ''}`;
-   
+    return { years, months, days };
 }
 
-// Chamar a função para mostrar imediatamente
-updateElapsedTime();
+function updateCounter() {
+    const time = calculateTimeTogether();
+    document.getElementById('years').textContent = time.years;
+    document.getElementById('months').textContent = time.months;
+    document.getElementById('days').textContent = time.days;
+}
+
+// Inicialização
+document.addEventListener('DOMContentLoaded', () => {
+    typeEffect();
+    new Carousel();
+    updateCounter();
+    setInterval(updateCounter, 3600000); // Atualiza a cada hora
+});
